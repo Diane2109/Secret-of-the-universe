@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:danger] = "Tu as bien été connecté.e !"
-      puts @user.id
-      puts @user.name
+      #puts @user_id = @user.id
+      #puts @user_name = @user.name
       redirect_to :action=>"show", :controller=>"sessions", :id=>"#{@user.id}"
     else flash[:danger] = "Tu t'es trompé.e dans la confirmation de ton mot de passe. Recommence ton inscription."
       render 'new'
@@ -19,19 +19,25 @@ class UsersController < ApplicationController
   end
 
   def edit
-    puts params[:id]
-    @user_new = User.find(params[:id])
+    current_user
+    @current_user
+    @user = User.find(params[:id])
   end
 
   def edit_after
-    puts params[:id]
-    @user_new = User.find(params[:id])
-    if @user_new == @current_user
-      @user_new.update_attributes(name: "params[:session][:name]", email: "params[:session][:email]")
-    else
+    current_user
+    current_user_id = @current_user.id
+    @user = User.find(params[:id])
+    user_id = @user.id
+    if current_user_id == user_id
+      @user.update_attributes(:name => params[:session][:name], :email => params[:session][:email], :password => params[:session][:password], :password_confirmation => params[:session][:password_confirmation])
       flash[:danger] = "Ton profil a été mis à jour."
-      render 'edit'
+      redirect_to show_id_path
+    else
+      flash[:danger] = "ATTENTION, tu ne peux modifier que ton profil."
+      redirect_to show_id_path
     end
   end
+
 
 end

@@ -9,13 +9,19 @@
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %></br>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %></br>
 
       <%= f.submit "Edit", class: "btn btn-primary" %>
 
     <% end %>
     </br>
-    <p>Pour modifier ton mot de passe, contacte l'administrateur.</p>
+    <p>ATTENTION : Veille bien à bien remplir tous les champs.</p>
 
   </div>
 </div>

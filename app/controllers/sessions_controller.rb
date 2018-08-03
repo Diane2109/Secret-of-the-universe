@@ -40,15 +40,11 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
+    flash[:danger] = "Vous avez été déconnecté.e ! 🙄 😁 🙃 😎"
     redirect_to root_url
   end
 
   def index
   end
-
-  def edit
-
-  end
-
 
 end

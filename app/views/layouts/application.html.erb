@@ -15,7 +15,7 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
             <% if logged_in? %>
-              <%= link_to "Le secret de l'univers", '#' %>
+              <%= link_to "Le secret de l'univers", show_id_path %>
               <%= link_to "Editer mon profil", edit_path %>
               <%= link_to "Se déconnecter", logout_path, method: :delete %>
             <% else %>
